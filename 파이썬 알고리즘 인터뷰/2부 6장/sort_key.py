@@ -1,5 +1,4 @@
-arr = [(1,2), (1,3), (2,1), (4,4)]
+c = ['ccc', 'aaa', 'd', 'bb']
+c = sorted(c, key = len)
 
-arr.sort(key = lambda arr: arr[1], reverse = True)
-
-print(arr)
+print(c)
