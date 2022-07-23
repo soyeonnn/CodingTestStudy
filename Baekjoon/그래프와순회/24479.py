@@ -7,8 +7,8 @@ def dfs(graph, v, visited):
         if not visited[i]:
             dfs(graph, i, visited)
 
-import sys
-input = sys.stdin.readline
+# import sys
+# input = sys.stdin.readline
 n,m,r = map(int, input().split())
 graph = []
 for i in range(n + 1):
