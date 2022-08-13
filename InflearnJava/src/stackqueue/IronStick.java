@@ -13,7 +13,7 @@ public class IronStick {
 				if(str.charAt(index+1) == ')' && !stack.isEmpty()) {
 					cur++;
 					total++;
-					index++;
+					index+=2;
 				} else if(str.charAt(index+1) == ')' && stack.isEmpty()) {
 					index += 2;
 				} else {
