@@ -2,23 +2,23 @@ package sortingsearching;
 
 import java.util.Scanner;
 
-public class SelectionSortSolution {
+public class BubbleSortSolution {
 
 	public int[] solution(int n, int[] arr) {
 		for(int i=0; i<n-1; i++) {
-			int idx = i;
-			for(int j=i+1; j<n; j++) {
-				if(arr[j] < arr[idx]) idx = j;
+			for(int j=0; j<n-i-1; j++) {
+				if(arr[j] > arr[j+1]) {
+					int tmp = arr[j];
+					arr[j] = arr[j+1];
+					arr[j+1] = tmp; 
+				}
 			}
-			int tmp = arr[i];
-			arr[i] = arr[idx];
-			arr[idx] = tmp;
 		}
 		return arr;
 	}
 	
 	public static void main(String[] args) {
-		SelectionSortSolution T = new SelectionSortSolution();
+		BubbleSortSolution T = new BubbleSortSolution();
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
 		int[] arr = new int[n];
