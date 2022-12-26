@@ -1,1 +1,1 @@
-# CodingTestStudy 👍👍
+# CodingTestStudy 👍
