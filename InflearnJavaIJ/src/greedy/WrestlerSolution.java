@@ -1,4 +1,4 @@
-package dfsbfs;
+package greedy;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package dfsbfs;
+package greedy;
 
 import java.util.Scanner;
 
