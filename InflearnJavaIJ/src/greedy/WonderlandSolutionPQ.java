@@ -1,45 +1,55 @@
 package greedy;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.PriorityQueue;
 import java.util.Scanner;
+
+class Edge2 implements Comparable<Edge2> {
+
+    public int vex;
+    public int cost;
+
+    public Edge2(int vex, int cost) {
+        this.vex = vex;
+        this.cost = cost;
+    }
+
+    @Override
+    public int compareTo(Edge2 o) {
+        return this.cost - o.cost;
+    }
+}
 
 public class WonderlandSolutionPQ {
 
-    static int[] unf;
-
-    public static int Find(int v) {
-        if(v == unf[v]) return v;
-        else return unf[v] = Find(unf[v]);
-    }
-
-    public static void Union(int a, int b) {
-        int fa = Find(a);
-        int fb = Find(b);
-        if (fa != fb) unf[fa] = fb;
-    }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int v = sc.nextInt();
-        int e = sc.nextInt();
-        unf = new int[v+1];
-        ArrayList<edge> arr = new ArrayList<>();
-        for(int i=1; i<=v; i++) unf[i] = i;
-        for(int i=1; i<=e; i++) {
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        ArrayList<ArrayList<Edge2>> graph = new ArrayList<ArrayList<Edge2>>();
+        for(int i=0; i<=n; i++) {
+            graph.add(new ArrayList<Edge2>());
+        }
+        int[] ch = new int[n + 1];
+        for(int i=0; i<m; i++) {
             int a = sc.nextInt();
             int b = sc.nextInt();
             int c = sc.nextInt();
-            arr.add(new edge(a, b, c));
+            graph.get(a).add(new Edge2(b, c));
+            graph.get(b).add(new Edge2(a, c));
         }
         int answer = 0;
-        Collections.sort(arr);
-        for(edge ob : arr) {
-            int fv1 = Find(ob.v1);
-            int fv2 = Find(ob.v2);
-            if(fv1 != fv2) {
-                answer += ob.cost;
-                Union(ob.v1, ob.v2);
+        PriorityQueue<Edge2> pQ = new PriorityQueue<>();
+        pQ.offer(new Edge2(1,0));
+        while(!pQ.isEmpty()) {
+            Edge2 tmp = pQ.poll();
+            int ev = tmp.vex;
+            if(ch[ev]==0) {
+                ch[ev] = 1;
+                answer+=tmp.cost;
+                for(Edge2 ob : graph.get(ev)) {
+                    if(ch[ob.vex]==0) pQ.offer(new Edge2(ob.vex, ob.cost));
+                }
             }
         }
         System.out.println(answer);
