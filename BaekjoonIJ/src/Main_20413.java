@@ -28,7 +28,7 @@ public class Main_20413 {
             else if(play.charAt(i) == 'D') playMoney[i] =  standard[4];
             answer += playMoney[i];
         }
-        
+
         System.out.println(answer);
 
     }
